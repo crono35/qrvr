@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Amenities | Quartzsite RV Resort</title>
+
+  <meta
+    name="description"
+    content="Explore the amenities at Quartzsite RV Resort, including oversized full-hookup RV sites, concrete pads, clubhouse, laundry, showers, game room, fitness and recreation options, and more."
+  >
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .amenities-hero {
+      background: var(--cream);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .amenities-hero-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 76px 24px 62px;
+      text-align: center;
+    }
+
+    .amenities-hero h1 {
+      color: var(--ink);
+      font-size: clamp(38px, 5vw, 58px);
+      margin-bottom: 18px;
+    }
+
+    .amenities-hero p {
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: 20px;
+      color: var(--muted);
+    }
+
+    .amenities-intro {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 70px 24px 30px;
+      text-align: center;
+    }
+
+    .amenities-intro h2 {
+      margin-bottom: 20px;
+    }
+
+    .amenities-intro p {
+      max-width: 820px;
+      margin: 0 auto 16px;
+    }
+
+    .amenity-grid {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 28px 24px 80px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .amenity-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 28px 24px;
+      box-shadow: 0 6px 24px rgba(0,0,0,.05);
+    }
+
+    .amenity-card h3 {
+      margin-bottom: 10px;
+      color: var(--teal);
+    }
+
+    .amenity-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .photo-section {
+      background: var(--cream);
+      padding: 76px 24px 90px;
+    }
+
+    .photo-section .section-heading {
+      margin-bottom: 34px;
+    }
+
+    .amenities-gallery {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .amenities-gallery figure {
+      margin: 0;
+      overflow: hidden;
+      border-radius: 10px;
+      background: #ddd;
+      aspect-ratio: 4 / 3;
+    }
+
+    .amenities-gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .2s ease;
+    }
+
+    .amenities-gallery img:hover {
+      transform: scale(1.02);
+    }
+
+    .amenities-cta {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      text-align: center;
+    }
+
+    .amenities-cta p {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .amenities-cta .rate-actions {
+      margin-top: 26px;
+    }
+
+    @media (max-width: 900px) {
+      .amenity-grid,
+      .amenities-gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .amenities-hero-inner {
+        padding-top: 58px;
+        padding-bottom: 48px;
+      }
+
+      .amenity-grid,
+      .amenities-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .amenity-card {
+        padding: 24px 20px;
+      }
+    }
+
+    .amenities-gallery a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: zoom-in;
+    }
+
+    .amenities-gallery a:focus-visible {
+      outline: 4px solid var(--teal);
+      outline-offset: 3px;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0.88);
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: min(1200px, 96vw);
+      max-height: 92vh;
+    }
+
+    .lightbox-image {
+      display: block;
+      max-width: 100%;
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      margin: 0 auto;
+      border-radius: 8px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.35);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -18px;
+      right: -18px;
+      width: 48px;
+      height: 48px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--white);
+      color: var(--ink);
+      font-size: 32px;
+      line-height: 1;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,.3);
+    }
+
+    .lightbox-close:hover,
+    .lightbox-close:focus-visible {
+      background: var(--sand);
+    }
+
+    @media (max-width: 600px) {
+      .lightbox {
+        padding: 14px;
+      }
+
+      .lightbox-close {
+        top: 8px;
+        right: 8px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div id="site-header"></div>
+
+  <main>
+
+    <section class="amenities-hero">
+      <div class="amenities-hero-inner">
+        <p class="eyebrow">Comfortable Desert Camping</p>
+        <h1>Amenities That Make Your Stay Easy</h1>
+        <p>
+          Quartzsite RV Resort is designed for travelers who want plenty of room,
+          dependable hookups, useful on-site amenities, and a comfortable place
+          to settle in—whether you're staying a few nights or spending the season.
+        </p>
+      </div>
+    </section>
+
+    <section class="amenities-intro">
+      <p class="eyebrow">Room to Settle In</p>
+      <h2>Spacious Sites for Big Rigs and Long Stays</h2>
+      <p>
+        Our 27 oversized RV sites can accommodate everything from Class B and Class C
+        motorhomes to large Class A coaches and fifth wheels up to 45 feet.
+        Select sites can accommodate luxury motor coaches up to approximately 52 feet.
+      </p>
+      <p>
+        With full hookups, concrete pads, room for two vehicles, and utilities included
+        in our daily rate category, you can arrive, get comfortable, and start enjoying Quartzsite.
+      </p>
+    </section>
+
+    <section class="amenity-grid" aria-label="Quartzsite RV Resort amenities">
+
+      <article class="amenity-card">
+        <h3>Oversized Full-Hookup Sites</h3>
+        <p>Large RV sites with 30- and 50-amp electric service, water, sewer, and room for larger rigs.</p>
+      </article>
+
+      <article class="amenity-card">
+        <h3>Concrete Pads</h3>
+        <p>Level concrete pads provide a cleaner, more comfortable setup for your RV and outdoor space.</p>
+      </article>
+
+      <article class="amenity-card">
+        <h3>Parking for Two Vehicles</h3>
+        <p>Each site offers convenient space for your RV plus additional vehicle parking.</p>
+      </article>
+
+      <article class="amenity-card">
+        <h3>Utilities Included</h3>
+        <p>Water, sewer, garbage service, and electricity are included in all rates.</p>
+      </article>
+
+      <article class="amenity-card">
+        <h3>Clubhouse & Game Room</h3>
+        <p>Relax indoors with big-screen TVs, a pool table, shuffleboard, and space to gather with friends.</p>
+      </article>
+
+      <article class="amenity-card">
+        <h3>Wi-Fi Available</h3>
+        <p>Wi-Fi is available on-site for general browsing and everyday use. Speeds and bandwidth may be limited, especially during busy periods.</p>
+      </article>
+
+      <article class="amenity-card">
+        <h3>Shower Facilities</h3>
+        <p>On-site shower facilities give guests an extra option for freshening up during their stay.</p>
+      </article>
+
+      <article class="amenity-card">
+        <h3>On-Site Laundry</h3>
+        <p>Convenient laundry facilities make extended and seasonal stays easier.</p>
+      </article>
+
+      <article class="amenity-card">
+        <h3>Indoor Kitchen</h3>
+        <p>A shared indoor kitchen provides extra space for preparing meals and gathering with other guests.</p>
+      </article>
+
+      <article class="amenity-card">
+        <h3>Outdoor Cooking & Fire Pit</h3>
+        <p>Enjoy our BBQ pit, smoker, and fire pit for relaxed evenings and outdoor meals.</p>
+      </article>
+
+    </section>
+
+    <section class="photo-section">
+      <div class="section-heading">
+        <p class="eyebrow">Take a Look Around</p>
+        <h2>See the Resort</h2>
+        <p>
+          Browse photos of our RV sites, clubhouse, common areas, and guest amenities.
+        </p>
+      </div>
+
+      <div class="amenities-gallery">
+        <figure><a href="images/amenities1.webp" class="gallery-link" aria-label="View amenity photo 1 larger"><img src="images/amenities1.webp" alt="Quartzsite RV Resort amenity photo 1" loading="lazy"></a></figure>
+        <figure><a href="images/amenities2.webp" class="gallery-link" aria-label="View amenity photo 2 larger"><img src="images/amenities2.webp" alt="Quartzsite RV Resort amenity photo 2" loading="lazy"></a></figure>
+        <figure><a href="images/amenities3.webp" class="gallery-link" aria-label="View amenity photo 3 larger"><img src="images/amenities3.webp" alt="Quartzsite RV Resort amenity photo 3" loading="lazy"></a></figure>
+        <figure><a href="images/amenities4.webp" class="gallery-link" aria-label="View amenity photo 4 larger"><img src="images/amenities4.webp" alt="Quartzsite RV Resort amenity photo 4" loading="lazy"></a></figure>
+        <figure><a href="images/amenities5.webp" class="gallery-link" aria-label="View amenity photo 5 larger"><img src="images/amenities5.webp" alt="Quartzsite RV Resort amenity photo 5" loading="lazy"></a></figure>
+        <figure><a href="images/amenities6.webp" class="gallery-link" aria-label="View amenity photo 6 larger"><img src="images/amenities6.webp" alt="Quartzsite RV Resort amenity photo 6" loading="lazy"></a></figure>
+        <figure><a href="images/amenities7.webp" class="gallery-link" aria-label="View amenity photo 7 larger"><img src="images/amenities7.webp" alt="Quartzsite RV Resort amenity photo 7" loading="lazy"></a></figure>
+        <figure><a href="images/amenities8.webp" class="gallery-link" aria-label="View amenity photo 8 larger"><img src="images/amenities8.webp" alt="Quartzsite RV Resort amenity photo 8" loading="lazy"></a></figure>
+        <figure><a href="images/amenities9.webp" class="gallery-link" aria-label="View amenity photo 9 larger"><img src="images/amenities9.webp" alt="Quartzsite RV Resort amenity photo 9" loading="lazy"></a></figure>
+        <figure><a href="images/amenities10.webp" class="gallery-link" aria-label="View amenity photo 10 larger"><img src="images/amenities10.webp" alt="Quartzsite RV Resort amenity photo 10" loading="lazy"></a></figure>
+        <figure><a href="images/amenities11.webp" class="gallery-link" aria-label="View amenity photo 11 larger"><img src="images/amenities11.webp" alt="Quartzsite RV Resort amenity photo 11" loading="lazy"></a></figure>
+        <figure><a href="images/amenities12.webp" class="gallery-link" aria-label="View amenity photo 12 larger"><img src="images/amenities12.webp" alt="Quartzsite RV Resort amenity photo 12" loading="lazy"></a></figure>
+      </div>
+    </section>
+
+    <section class="amenities-cta">
+      <p class="eyebrow">Ready to Stay?</p>
+      <h2>Find Your Site at Quartzsite RV Resort</h2>
+      <p>
+        Check current availability and rates, or take a look at our campground map
+        before choosing your stay.
+      </p>
+
+      <div class="rate-actions">
+        <a
+          class="button button-primary"
+          href="https://www.campspot.com/book/quartzsite-rv-resort"
+        >
+          Check Availability &amp; Book
+        </a>
+
+        <a class="button button-outline" href="site-map.html">
+          View Site Map
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+
+  <div class="lightbox" id="image-lightbox" aria-hidden="true" role="dialog" aria-label="Amenity photo viewer">
+    <div class="lightbox-content">
+      <button class="lightbox-close" type="button" aria-label="Close photo viewer">&times;</button>
+      <img class="lightbox-image" src="" alt="">
+    </div>
+  </div>
+
+  <div id="site-footer"></div>
+
+
+  <script>
+    (function () {
+      const lightbox = document.getElementById('image-lightbox');
+      const lightboxImage = lightbox.querySelector('.lightbox-image');
+      const closeButton = lightbox.querySelector('.lightbox-close');
+      const galleryLinks = document.querySelectorAll('.gallery-link');
+
+      function openLightbox(link) {
+        const img = link.querySelector('img');
+        lightboxImage.src = link.getAttribute('href');
+        lightboxImage.alt = img ? img.alt : 'Quartzsite RV Resort amenity photo';
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        closeButton.focus();
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lightboxImage.src = '';
+        document.body.style.overflow = '';
+      }
+
+      galleryLinks.forEach(link => {
+        link.addEventListener('click', event => {
+          event.preventDefault();
+          openLightbox(link);
+        });
+      });
+
+      closeButton.addEventListener('click', closeLightbox);
+
+      lightbox.addEventListener('click', event => {
+        if (event.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && lightbox.classList.contains('open')) {
+          closeLightbox();
+        }
+      });
+    })();
+  </script>
+
+  <script src="site.js"></script>
+
+</body>
+</html>

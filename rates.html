@@ -73,7 +73,6 @@
     }
 
     .rate-table-wrap {
-      overflow-x: auto;
       border: 1px solid var(--line);
       border-radius: 12px;
       background: var(--white);
@@ -83,7 +82,7 @@
     .rate-table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 620px;
+      table-layout: fixed;
     }
 
     .rate-table th,
@@ -107,6 +106,15 @@
     .rate-table th:last-child {
       text-align: right;
       font-weight: 700;
+    }
+
+    .rate-detail {
+      display: block;
+      margin-top: 4px;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--muted);
     }
 
     .discount-grid {
@@ -173,6 +181,17 @@
     }
 
     @media (max-width: 760px) {
+      .rate-table th,
+      .rate-table td {
+        padding: 12px 10px;
+        font-size: 14px;
+        overflow-wrap: break-word;
+      }
+
+      .rate-table th {
+        font-size: 15px;
+      }
+
       .discount-grid {
         grid-template-columns: 1fr;
       }
@@ -211,10 +230,16 @@
       </div>
 
       <div class="example-box" style="margin-top: 0; margin-bottom: 34px;">
-        <h3>Peak Season Surcharge: January 15–31, 2027</h3>
+        <h3>January 15–31, 2027: Peak-Season Booking Information</h3>
         <p>
-          A <strong>25% peak-season surcharge</strong> applies to bookings for stays occurring between
-          <strong>January 15 and January 31, 2027</strong>, our busiest period of the season.
+          Reservations for stays during <strong>January 15–31, 2027</strong> currently require a
+          <strong>minimum stay of 7 nights</strong>. This minimum-stay restriction expires on
+          <strong>December 31, 2026</strong>. Please check back after that date for shorter-stay availability.
+        </p>
+        <p>
+          A <strong>25% peak-season surcharge</strong> applies to stays of
+          <strong>fewer than 30 nights</strong> during January 15–31, 2027.
+          Stays of <strong>30 nights or longer</strong> are exempt from this surcharge.
         </p>
       </div>
 
@@ -262,7 +287,8 @@
             <tbody>
               <tr><td>July–September</td><td>$250</td></tr>
               <tr><td>October–December</td><td>$325</td></tr>
-              <tr><td>January</td><td>$350</td></tr>
+              <tr><td>January 1–14</td><td>$350</td></tr>
+              <tr><td>January 15–31</td><td>$437.50<span class="rate-detail">Includes 25% surcharge; 7-night minimum</span></td></tr>
               <tr><td>February</td><td>$325</td></tr>
               <tr><td>March</td><td>$300</td></tr>
             </tbody>

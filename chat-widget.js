@@ -1,3 +1,4 @@
+
 (() => {
   const WEBHOOK_URL =
     'https://ai.quartzsitervresort.com/webhook/reservation-inquiry-test';
@@ -127,6 +128,30 @@
 
         div.appendChild(label);
         div.appendChild(link);
+
+      } else if (msg.typing) {
+        // Display animated dots instead of "Thinking..."
+        div.classList.add('qrvr-typing-indicator');
+
+        div.setAttribute('role', 'status');
+        div.setAttribute(
+          'aria-label',
+          'Assistant is typing'
+        );
+
+        for (let i = 0; i < 3; i++) {
+          const dot = document.createElement('span');
+
+          dot.className = 'qrvr-typing-dot';
+
+          dot.setAttribute(
+            'aria-hidden',
+            'true'
+          );
+
+          div.appendChild(dot);
+        }
+
       } else {
         div.textContent = msg.text;
       }
@@ -207,12 +232,14 @@
     sendButton.disabled = true;
     input.disabled = true;
 
+    // Add a temporary typing indicator.
     const typingIndex = messages.length;
 
     messages.push({
       role: 'assistant',
-      text: 'Thinking...',
-      booking_url: null
+      text: '',
+      booking_url: null,
+      typing: true
     });
 
     renderMessages();
@@ -255,6 +282,7 @@
       const data =
         await response.json();
 
+      // Remove the temporary typing indicator.
       messages.splice(
         typingIndex,
         1
@@ -288,6 +316,7 @@
       renderMessages();
 
     } catch (error) {
+      // Also remove the indicator if the request fails.
       messages.splice(
         typingIndex,
         1

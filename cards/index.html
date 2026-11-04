@@ -1,1 +1,55 @@
-
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1120">
+  <title>Pokémon Drop Monitor | Demo Dashboard</title>
+  <style>
+    :root{color-scheme:dark;--bg:#09101c;--panel:#121d30;--panel2:#16233a;--line:#263753;--text:#edf3ff;--muted:#a6b5d0;--accent:#66d9e8;--gold:#ffc85a;--green:#5ee0ab;--red:#ff8393;--blue:#85b8ff}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% -10%,#18395c 0,transparent 33%),var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);min-height:100vh}a{color:inherit}button,input,select{font:inherit}button{cursor:pointer}
+    .shell{max-width:1190px;margin:auto;padding:28px 22px 60px}.top{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:34px}.brand{display:flex;align-items:center;gap:13px}.logo{display:grid;place-items:center;width:48px;height:48px;border-radius:15px;background:linear-gradient(145deg,#2bd0e0,#3d74ee);font-size:25px;box-shadow:0 8px 28px #2abfd43b}.brand strong{display:block;font-size:17px;letter-spacing:.2px}.brand small{display:block;color:var(--muted);margin-top:3px}.pill{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border-radius:999px;border:1px solid #4c5266;background:#292233;color:#ffe0a6;font-size:12px;font-weight:700}.dot{width:8px;height:8px;background:var(--gold);border-radius:50%}.intro{display:flex;justify-content:space-between;align-items:end;gap:22px;margin-bottom:24px}.eyebrow{text-transform:uppercase;letter-spacing:2px;color:var(--accent);font-weight:800;font-size:11px;margin:0 0 10px}.intro h1{font-size:clamp(30px,4vw,46px);line-height:1.07;margin:0 0 12px;letter-spacing:-1.3px}.intro p{color:var(--muted);max-width:630px;margin:0;line-height:1.65}.notice{padding:10px 13px;border:1px solid #574d37;background:#2b271f;color:#fbdca2;font-size:12px;border-radius:10px;max-width:240px;line-height:1.5}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:26px}.stat{background:linear-gradient(140deg,var(--panel),#101929);border:1px solid var(--line);border-radius:17px;padding:19px}.stat label{display:block;color:var(--muted);font-size:12px;margin-bottom:9px}.stat b{font-size:29px;letter-spacing:-1px}.stat em{display:block;color:#7890b2;font-style:normal;font-size:11px;margin-top:7px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px}.section-head h2{font-size:20px;margin:0}.section-head small{color:var(--muted)}.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}.tools input,.tools select{min-height:43px;border-radius:10px;border:1px solid var(--line);background:#111c2c;color:var(--text);padding:10px 13px;outline:none}.tools input{min-width:230px;flex:1}.tools input:focus,.tools select:focus{border-color:var(--accent)}.tools select{min-width:158px}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.product{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:17px;overflow:hidden;min-width:0}.product-art{height:145px;background:radial-gradient(circle at 70% 25%,#234f70,transparent 55%),linear-gradient(135deg,#1b2d4a,#12213b);display:grid;place-items:center;position:relative}.product-art .symbol{font-size:66px;filter:drop-shadow(0 12px 12px #0004)}.product-art .ribbon{position:absolute;left:13px;top:13px;background:#17233bdc;border:1px solid #425779;border-radius:999px;font-size:11px;padding:6px 9px;color:#cdddf7}.product-content{padding:17px;display:flex;flex:1;flex-direction:column;gap:10px}.tag{display:inline-flex;font-size:10px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;border-radius:8px;padding:6px 9px;width:max-content}.in{background:#173c36;color:var(--green)}.out{background:#402633;color:var(--red)}.soon{background:#203751;color:var(--blue)}.product h3{font-size:17px;line-height:1.35;margin:0;min-height:45px}.retailer{color:var(--muted);font-size:12px}.price-row{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:8px}.price-row strong{font-size:24px}.price-row span{color:var(--muted);font-size:11px}.action{display:block;text-align:center;background:#223b58;border:1px solid #355a79;color:#d8f7ff;border-radius:10px;text-decoration:none;font-weight:750;padding:11px;margin-top:2px;font-size:13px;transition:background .15s}.action:hover{background:#2b5478}.action.disabled{opacity:.6;pointer-events:none;background:#202d40;border-color:#354257}.bottom{margin-top:24px;padding:17px 19px;border:1px solid var(--line);border-radius:14px;background:#101a2b;display:flex;justify-content:space-between;gap:20px;align-items:center}.bottom h3{margin:0 0 5px;font-size:14px}.bottom p{margin:0;color:var(--muted);font-size:12px;line-height:1.6}.bottom code{font-size:11px;color:#a9e9f0}.empty{grid-column:1/-1;border:1px dashed var(--line);border-radius:12px;padding:34px;text-align:center;color:var(--muted)}footer{color:#8092b1;text-align:center;font-size:11px;padding-top:30px}
+    @media(max-width:850px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.shell{padding:20px 14px 45px}.top{align-items:flex-start}.brand strong{font-size:14px}.brand small{font-size:11px}.intro{display:block}.notice{margin-top:17px;max-width:100%}.cards{grid-template-columns:1fr}.stats{gap:9px}.stat{padding:14px}.stat b{font-size:24px}.tools input,.tools select{width:100%;min-width:0}.bottom{display:block}.bottom code{display:block;margin-top:10px;overflow-wrap:anywhere}}
+  </style>
+</head>
+<body>
+<main class="shell">
+  <header class="top"><div class="brand"><div class="logo" aria-hidden="true">⚡</div><div><strong>DROPWATCH <span style="color:var(--accent)">TCG</span></strong><small>Pokémon product discovery &amp; restock tracker</small></div></div><span class="pill"><span class="dot"></span> DEMO MODE</span></header>
+  <div class="intro"><div><p class="eyebrow">Your personal product radar</p><h1>Find the drop.<br>Catch the restock.</h1><p>Track sealed Pokémon products from major retailers. Later, we'll connect this dashboard to your n8n inventory monitor and enable real alerts.</p></div><aside class="notice"><strong>Sample data only</strong><br>Prices and stock statuses below are placeholders, not live Best Buy inventory.</aside></div>
+  <section class="stats" aria-label="Dashboard statistics"><div class="stat"><label>Demo products</label><b id="tracked">0</b><em>In this sample watchlist</em></div><div class="stat"><label>Marked in stock</label><b id="available">0</b><em>Illustrative availability</em></div><div class="stat"><label>Coming soon</label><b id="upcoming">0</b><em>Potential future drops</em></div><div class="stat"><label>Data connection</label><b style="font-size:22px;color:var(--gold)">Not connected</b><em>n8n integration pending</em></div></section>
+  <div class="section-head"><h2>Product watchlist</h2><small id="count"></small></div>
+  <div class="tools"><input id="search" type="search" placeholder="Search products…" aria-label="Search products"><select id="status" aria-label="Filter availability"><option value="all">All availability</option><option value="in_stock">In stock</option><option value="coming_soon">Coming soon</option><option value="out_of_stock">Out of stock</option></select><select id="type" aria-label="Filter product type"><option value="all">All product types</option><option value="ETB">Elite Trainer Boxes</option><option value="Booster Box">Booster Boxes</option><option value="Booster Bundle">Booster Bundles</option><option value="Collection">Collections</option></select></div>
+  <section id="products" class="cards" aria-label="Products"></section>
+  <section class="bottom"><div><h3>Ready for the live connection</h3><p>Next: Best Buy catalog API → n8n product database → dashboard endpoint → Telegram alerts.<br>All API keys will remain on the server, not in this webpage.</p></div><code>cards/index.html</code></section>
+  <footer>Independent personal monitoring dashboard demo. Not affiliated with Pokémon, Nintendo, or Best Buy.</footer>
+</main>
+<script>
+  // Fictional entries for layout testing only. No data is fetched from any retailer.
+  const products = [
+    {name:'Sample Pokémon Elite Trainer Box',type:'ETB',status:'in_stock',price:49.99,retailer:'Best Buy',symbol:'🎴'},
+    {name:'Sample Pokémon Booster Bundle',type:'Booster Bundle',status:'coming_soon',price:26.99,retailer:'Best Buy',symbol:'📦'},
+    {name:'Sample Pokémon Booster Box',type:'Booster Box',status:'out_of_stock',price:159.99,retailer:'Best Buy',symbol:'✨'},
+    {name:'Sample Premium Collection',type:'Collection',status:'in_stock',price:59.99,retailer:'Best Buy',symbol:'🏆'},
+    {name:'Sample Special Set Elite Trainer Box',type:'ETB',status:'coming_soon',price:54.99,retailer:'Best Buy',symbol:'⚡'},
+    {name:'Sample Pokémon Booster Bundle (Alt.)',type:'Booster Bundle',status:'out_of_stock',price:29.99,retailer:'Best Buy',symbol:'🎁'}
+  ];
+  const statusText = {in_stock:'In stock · sample',out_of_stock:'Out of stock · sample',coming_soon:'Coming soon · sample'};
+  const statusClass = {in_stock:'in',out_of_stock:'out',coming_soon:'soon'};
+  const esc = value => String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  function render(){
+    const query=document.getElementById('search').value.toLowerCase().trim();
+    const status=document.getElementById('status').value;
+    const type=document.getElementById('type').value;
+    const filtered=products.filter(p=>(p.name.toLowerCase().includes(query)||p.retailer.toLowerCase().includes(query))&&(status==='all'||p.status===status)&&(type==='all'||p.type===type));
+    document.getElementById('count').textContent=`Showing ${filtered.length} of ${products.length}`;
+    document.getElementById('products').innerHTML=filtered.length?filtered.map(p=>`<article class="product"><div class="product-art"><span class="ribbon">${esc(p.type)}</span><span class="symbol" aria-hidden="true">${p.symbol}</span></div><div class="product-content"><span class="tag ${statusClass[p.status]}">${statusText[p.status]}</span><h3>${esc(p.name)}</h3><div class="retailer">${esc(p.retailer)} · Example listing</div><div class="price-row"><strong>$${p.price.toFixed(2)}</strong><span>Sample price</span></div><span class="action disabled" aria-disabled="true">Retail link available after setup</span></div></article>`).join(''):'<div class="empty">No sample products match those filters.</div>';
+  }
+  document.getElementById('tracked').textContent=products.length;
+  document.getElementById('available').textContent=products.filter(p=>p.status==='in_stock').length;
+  document.getElementById('upcoming').textContent=products.filter(p=>p.status==='coming_soon').length;
+  ['search','status','type'].forEach(id=>document.getElementById(id).addEventListener('input',render));
+  render();
+</script>
+</body>
+</html>
